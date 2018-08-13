@@ -43,7 +43,7 @@
         <div class="card mb-2">
           <h3 class="card-header">Your Guess:</h3>
           <div class="card-body text-center">
-              <h1 id="computer-pick">???</h1>
+              <h1 id="computer-pick"><span id="user-text"></span></h1>
           </div>
         </div>
       </div>
@@ -52,9 +52,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-2">
-          <h3 class="card-header">Your guesses so far: <span id="user-text"></span></h3>
+          <h3 class="card-header">Your guesses so far:</h3>
           <div class="card-body text-center">
-            <h1 id="computer-pick">???</h1>
+            <h1><span id="all-text"></span></h1>
           </div>
         </div>
       </div>
@@ -80,9 +80,17 @@
       // Initial Variables
       var computerPick = Math.floor(Math.random() * 4) + 1;
       var lockGame = false;
+      var userText = document.getElementById("user-text");
+      var allText = document.getElementById("all-text");
 
-      // We log the computer's pick to console to make it easier to troubleshoot
+      // Log of computer's pick to console
       console.log("Computer Pick: " + computerPick);
+
+      // Function to execute when onkeyup event fires to get user's pick.
+      document.onkeyup = function(event) {
+        userText.textContent = event.key;
+        allText.textContent = event.key;
+      }; 
 
       // Here we create the on click event that gets the user"s pick
       $(".btn-choice").on("click", function() {
