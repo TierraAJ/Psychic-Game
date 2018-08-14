@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <title>Number Checker</title>
 
-  <!-- Added link to the jQuery Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <!-- Added a link to Bootstrap-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type=text/javascript src="assets/javascript/game.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 </head>
 
@@ -18,10 +19,17 @@
   <div class="jumbotron">
     <h1 class="text-center">The Psychic Game</h1>
     <div></div>
+
     <h2 class="text-center">Guess what letter I'm thinking of!</h2>
+
     <h4>Wins:</h4>
-    <h4>Losses:</h4>
-    <h4>Guesses Left:</h4>
+      <p id="wins-text"></p>
+
+    <h4 id="losses">Losses:</h4>
+      <p id="losses-text"></p>
+
+    <h4 id="guesses-left">Guesses Left:</h4>
+      <p id="guesses-left-text"></p>
     
   </div>
 
@@ -32,7 +40,7 @@
         <div class="card mb-2">
           <h3 class="card-header">The letter I was thinking of:</h3>
           <div class="card-body text-center">
-            <h1 id="computer-pick">???</h1>
+            <h1 id="computer-pick"></h1>
           </div>
         </div>
       </div>
@@ -70,59 +78,8 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <script type="text/javascript">
-
-    $(document).ready(function() {
-
-      // Initial Variables
-      var computerPick = Math.floor(Math.random() * 4) + 1;
-      var lockGame = false;
-      var userText = document.getElementById("user-text");
-      var allText = document.getElementById("all-text");
-
-      // Log of computer's pick to console
-      console.log("Computer Pick: " + computerPick);
-
-      // Function to execute when onkeyup event fires to get user's pick.
-      document.onkeyup = function(event) {
-        userText.textContent = event.key;
-        allText.textContent = event.key;
-      }; 
-
-      // Here we create the on click event that gets the user"s pick
-      $(".btn-choice").on("click", function() {
-
-        // Here this lockGame line prevents the user from changing the option after the game is done.
-        if (lockGame !== true) {
-
-          // We get the value associated with the button the user picked from here
-          var yourPick = $(this).val();
-          console.log("Your Pick: " + yourPick);
-
-          // We then reveal the computer's pick in the html
-          $("#computer-pick").text(computerPick);
-
-          // If your pick matched the computer's pick you let them know.
-          if (parseInt(yourPick) === computerPick) {
-            $("#result").text("Yep! You got it! Refresh the page to play again.");
-            lockGame = true;
-          }
-
-          // If the numbers did not match. You also let them know
-          else {
-            $("#result").text("Nope. Refresh the page to play again.");
-            lockGame = true;
-          }
-        }
-
-      });
-    });
-
-  </script>
-
+</div>
 </body>
 
 </html>
