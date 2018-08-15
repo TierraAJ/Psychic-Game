@@ -1,7 +1,7 @@
     $(document).ready(function() {
 
       // Initial Variables
-      var computerPick = document.getElementById("computer-pick")
+      var computerPickText = document.getElementById("computer-pick")
       var userText = document.getElementById("user-text");
       var allText = document.getElementById("all-text");
      
@@ -22,31 +22,31 @@
         return allowedLetters[random];
       }
       
-      var computerChose = computerChoice();
-      console.log(computerChose);
+      var computerPickText = computerChoice();
+      console.log(computerPickText);
 
       // Function to execute when onkeyup event fires to get user's pick.
       document.onkeyup = function(event) {
         userText.textContent = event.key;
         allText.textContent = event.key;
-        computerChoseText.textContent = "The computer chose: " + computerChoice;
+        computerPickText.textContent = event.key;
       }; 
 
       // Here we create the on click event that gets the user"s pick
-      $(".btn-choice").on("click", function() {
+      $("#user-text").on("keyup", function() {
 
         // Here this lockGame line prevents the user from changing the option after the game is done.
         if (lockGame !== true) {
 
           // We get the value associated with the button the user picked from here
-          var yourPick = $(this).val();
-          console.log("Your Pick: " + yourPick);
+          var userText = $(this).val();
+          console.log("Your Pick: " + userText);
 
           // We then reveal the computer's pick in the html
           $("#computer-pick").text(computerPick);
 
           // If your pick matched the computer's pick you let them know.
-          if (parseInt(yourPick) === computerPick) {
+          if (parseInt(userText) === computerPick) {
             $("#result").text("Yep! You got it! Refresh the page to play again.");
             lockGame = true;
           }
