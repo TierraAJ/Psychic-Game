@@ -25,12 +25,15 @@
       var computerPickText = computerChoice();
       console.log(computerPickText);
 
-      // Function to execute when onkeyup event fires to get user's pick.
+      // Function to execute when onkeyup event fires.
       document.onkeyup = function(event) {
+        // Prints key that user selects.
         userText.textContent = event.key;
         allText.textContent = event.key;
-        computerPickText.textContent = event.key;
+        $("#computer-pick").text(computerPickText)
       }; 
+
+      
 
       // Here we create the on click event that gets the user"s pick
       $("#user-text").on("keyup", function() {
